@@ -19,9 +19,13 @@
             </div>
             <div class="col-md-4">
               <label for="validationCustom02" class="form-label">Last name</label>
-              <input type="text" class="form-control" name="lastName" [(ngModel)]="studentObj.lastName">
-              <div class="valid-feedback">
-                Looks good!
+              <input type="text" class="form-control" #fLastName="ngModel" name="lastName" [(ngModel)]="studentObj.lastName" required minlength="5">
+              <div class="text-danger">
+                @if ((fLastName.touched || fLastName.dirty) && fLastName.errors?.['required']) {
+                    <span>Last Name is required</span>
+                }  @else if ((fLastName.touched || fLastName.dirty) && fLastName.errors?.['minlength']) {         
+                    <span>The last name must be 5 characters minimum</span>
+                } 
               </div>
             </div>
             <div class="col-md-4">
