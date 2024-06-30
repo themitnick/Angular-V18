@@ -1,0 +1,51 @@
+<div class="row">
+    <div class="col-3">
+        <button class="btn btn-primary" (click) = "getAllUsers()">Get Users</button>
+    </div>
+    <div class="col-3">
+        <select class="form-select">
+            <option disabled selected>Select User</option>
+            @for (user of userList; track $index) {
+                <option value="{{ user.id }}">{{ user.name }}</option>
+            }
+        </select>
+    </div>
+
+    <div class="col-3">
+        <select class="form-select">
+            <option disabled selected>Select Customers</option>
+            @for (customer of customerList; track $index) {
+                <option value="{{ customer.userId }}">{{ customer.userName }}</option>
+            }
+        </select>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-6">
+        <div class="card">
+            <div class="card-header bg-secondary text-white">New Department</div>
+        </div>
+        <div class="card-body">
+            <form class="g-3" [formGroup]="departmentForm">
+                <div class="row">
+                    <div class="col-12">
+                        <label for="">Department Name</label>
+                        <input type="text" name="" class="form-control" placeholder="Department Name" formControlName = "departmentName">
+                    </div>
+                    <div class="col-12">
+                        <label for="">Department Logo</label>
+                        <input type="text" name="" class="form-control" placeholder="Department Logo" formControlName = "departmentLogo">
+                    </div>
+                </div>
+                <div class="row pt-3">
+                    <div class="col-6 text-center">
+                        <button class="btn btn-secondary">Reset</button>
+                        <button class="btn btn-success mx-2" (click)="onSaveDepartment()">Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-6"></div>
+</div>

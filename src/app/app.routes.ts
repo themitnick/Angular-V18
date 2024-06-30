@@ -5,6 +5,7 @@ import { EmployeeListComponent } from './components/employee-list/employee-list.
 import { PipeComponent } from './components/pipe/pipe.component';
 import { TemplateComponent } from './components/forms/template/template.component';
 import { ReactiveComponent } from './components/forms/reactive/reactive.component';
+import { HttpclientComponent } from './components/httpclient/httpclient.component';
 
 export const routes: Routes = [
     {
@@ -28,5 +29,8 @@ export const routes: Routes = [
     },
     {
         path: 'reactive-form', component: ReactiveComponent
+    },
+    {
+        path: 'httpclient', component: HttpclientComponent
     }
 ];
