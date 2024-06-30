@@ -1,7 +1,8 @@
 import { JsonPipe } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { DepartmentService } from '../../services/department.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-httpclient',
@@ -15,9 +16,6 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 })
 export class HttpclientComponent implements OnInit{
   
-  BASE_URL_USER = "https://jsonplaceholder.typicode.com/users";
-  BASE_URL_CUSTOMER = "https://projectapi.gerasim.in/api/RealEstate/GetAllCustomers";
-  BASE_URL_DEPARTMENT = "https://projectapi.gerasim.in/api/Complaint/AddNewDepartment";
   userList: any = [];
   customerList: any = [];
 
@@ -29,28 +27,28 @@ export class HttpclientComponent implements OnInit{
     departmentLogo: new FormControl('', Validators.required)
   })
 
-  http = inject(HttpClient);
+  departmentService = inject(DepartmentService);
   
   ngOnInit(): void {
     this.getAllUsers();
-    // this.getAllCustomers();
+    this.getAllCustomers();
   }
 
   getAllUsers() {
-    this.http.get(this.BASE_URL_USER).subscribe(result => {
+    this.departmentService.getAllUsers().subscribe(result => {
       this.userList = result;
-    } )
+    });
   }
 
   getAllCustomers() {
-    this.http.get(this.BASE_URL_CUSTOMER).subscribe((result: any) => {
-      this.customerList = result
-    })
+   this.departmentService.getAllCustomers().subscribe(result => {
+    this.customerList = result;
+   });
   }
 
   onSaveDepartment() {
     let departmentFormValue = JSON.stringify(this.departmentForm.value);
-    this.http.post(this.BASE_URL_DEPARTMENT, departmentFormValue).subscribe((res:any) => {
+    this.departmentService.saveDepartment(departmentFormValue).subscribe((res:any) => {
       debugger;
       if(res.result) {
         alert('Department was created with success');
@@ -59,5 +57,6 @@ export class HttpclientComponent implements OnInit{
       }
     })
   }
+
 
 }
