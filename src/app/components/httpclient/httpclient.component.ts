@@ -2,15 +2,18 @@ import { JsonPipe } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DepartmentService } from '../../services/department.service';
-import { Observable } from 'rxjs';
+import { AlertComponent } from "../../reusableComponent/alert/alert.component";
+import { ButtonComponent } from "../../reusableComponent/button/button.component";
 
 @Component({
   selector: 'app-httpclient',
   standalone: true,
   imports: [
     JsonPipe,
-    ReactiveFormsModule
-  ],
+    ReactiveFormsModule,
+    AlertComponent,
+    ButtonComponent
+],
   templateUrl: './httpclient.component.html',
   styleUrl: './httpclient.component.css'
 })
@@ -37,6 +40,7 @@ export class HttpclientComponent implements OnInit{
   getAllUsers() {
     this.departmentService.getAllUsers().subscribe(result => {
       this.userList = result;
+      console.log(this.userList);
     });
   }
 
@@ -48,6 +52,7 @@ export class HttpclientComponent implements OnInit{
 
   onSaveDepartment() {
     let departmentFormValue = JSON.stringify(this.departmentForm.value);
+
     this.departmentService.saveDepartment(departmentFormValue).subscribe((res:any) => {
       debugger;
       if(res.result) {

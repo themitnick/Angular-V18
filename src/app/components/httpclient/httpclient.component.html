@@ -1,6 +1,7 @@
+<app-alert [alertType]="'Error'" [message]="'This is HttpClient page'"></app-alert>
 <div class="row">
     <div class="col-3">
-        <button class="btn btn-primary" (click) = "getAllUsers()">Get Users</button>
+        <app-button [btnClass]="'btn btn-primary mx-2'" [btnText]="'Get All Users'" (clickBtn)="getAllUsers()"></app-button>
     </div>
     <div class="col-3">
         <select class="form-select">
@@ -41,7 +42,8 @@
                 <div class="row pt-3">
                     <div class="col-6 text-center">
                         <button class="btn btn-secondary">Reset</button>
-                        <button class="btn btn-success mx-2" (click)="onSaveDepartment()">Save</button>
+                        <!-- <button class="btn btn-success mx-2" (click)="onSaveDepartment()">Save</button> -->
+                        <app-button [btnClass]="'btn btn-success mx-2'" [btnText]="'Save Record'" (clickBtn)="onSaveDepartment()"></app-button>
                     </div>
                 </div>
             </form>

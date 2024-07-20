@@ -9,6 +9,7 @@ export class DepartmentService {
   BASE_URL_USER: string = "https://jsonplaceholder.typicode.com/users";
   BASE_URL_CUSTOMER: string = "https://projectapi.gerasim.in/api/RealEstate/";
   BASE_URL_DEPARTMENT: string = "https://projectapi.gerasim.in/api/Complaint/";
+  BASE_URL_DEPARTMENT1: string = "https://projectapi.gerasim.in/api/Complaint/AddNewDepartment/"
 
   http = inject(HttpClient);
 
@@ -23,6 +24,7 @@ export class DepartmentService {
   }
 
   saveDepartment(datas: any) {
-    this.http.post(`${this.BASE_URL_DEPARTMENT + "AddNewDepartment"}`, datas);
+    return this.http.post(`${this.BASE_URL_DEPARTMENT + "AddNewDepartment"}`, datas);
   }
+  
 }
